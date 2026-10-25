@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Life in Stars · Your life story as a constellation</title>
+  <meta name="description" content="A 60-second video of your life (or someone you love) told as lines of light. The people who left become stars. Made to order, delivered by email." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,400&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <a class="brand" href="./">Life in <span>Stars</span></a>
+      <nav><a href="#order">Order</a><a href="contact.html">Contact</a></nav>
+    </header>
+
+    <section class="hero">
+      <h1>Every life is a sky<br />full of people.</h1>
+      <p>A 60-second video of a whole life told as lines of light. Family, friends, loves and goodbyes. The ones who left become stars, and at the end they join into a constellation.</p>
+      <video class="sample" src="sample.mp4" poster="sample.jpg" controls playsinline preload="none" muted></video>
+      <div class="steps">
+        <div><b>1. Tell the story</b>Names, how they're related, the ages things happened.</div>
+        <div><b>2. Pay securely</b>Razorpay: UPI, cards, net banking.</div>
+        <div><b>3. Get the video</b>A 1080×1920 MP4 in your email, ready for Instagram or WhatsApp.</div>
+      </div>
+    </section>
+
+    <form id="order" novalidate>
+      <h2>Order your video</h2>
+
+      <div class="card">
+        <h3>Choose a plan</h3>
+        <div class="plans" id="plans"></div>
+      </div>
+
+      <div class="card">
+        <h3>Whose life is this story about?</h3>
+        <label class="radio"><input type="radio" name="whose" value="me" checked /> My own life</label>
+        <label class="radio"><input type="radio" name="whose" value="other" /> Someone I love (a gift or a memorial)</label>
+
+        <label class="f" for="mainName">Their name, as it should appear (any language)</label>
+        <input id="mainName" type="text" maxlength="40" autocomplete="off" placeholder="e.g. Arjun, राहुल, அருண்" />
+        <label class="f" for="mainRole">Small label above the name <span class="hint">(optional)</span></label>
+        <input id="mainRole" type="text" maxlength="30" placeholder="You" />
+
+        <h3 style="margin-top:16px">Are they still with us?</h3>
+        <label class="radio"><input type="radio" name="alive" value="yes" checked /> Yes</label>
+        <label class="radio"><input type="radio" name="alive" value="no" /> No, they have passed away</label>
+
+        <div id="aliveBox">
+          <h3 style="margin-top:14px">How should the video end?</h3>
+          <label class="radio"><input type="radio" name="ending" value="continues" checked /> At today's age: the journey continues</label>
+          <label class="radio"><input type="radio" name="ending" value="star" /> Imagine the whole life, ending as the brightest star</label>
+          <div id="nowBox">
+            <label class="f" for="ageNow">Age today</label>
+            <input id="ageNow" type="number" min="1" max="110" inputmode="numeric" />
+          </div>
+          <div id="imagineBox" class="hidden">
+            <label class="f" for="imagineAge">Imagined final age</label>
+            <input id="imagineAge" type="number" min="1" max="110" value="85" inputmode="numeric" />
+          </div>
+        </div>
+        <div id="passedBox" class="hidden">
+          <label class="f" for="agePassed">Age when they passed away</label>
+          <input id="agePassed" type="number" min="1" max="110" inputmode="numeric" />
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>The people in the story</h3>
+        <p class="hint">Add everyone who should appear. "Arrived" is the main person's age when this person came into their life. Leave it empty for family who were there before they were born.</p>
+      </div>
+      <div id="people"></div>
+      <div class="actions"><button type="button" class="btn ghost" id="addPerson">+ Add a person</button></div>
+      <p class="hint" id="peopleCount"></p>
+
+      <div class="card">
+        <h3>Your details</h3>
+        <div class="row">
+          <div><label class="f" for="buyerName">Your name</label><input id="buyerName" type="text" maxlength="60" autocomplete="name" /></div>
+          <div><label class="f" for="buyerPhone">Phone <span class="hint">(for payment receipt)</span></label><input id="buyerPhone" type="tel" maxlength="15" autocomplete="tel" inputmode="tel" /></div>
+        </div>
+        <label class="f" for="buyerEmail">Email: the video will be sent here</label>
+        <input id="buyerEmail" type="email" maxlength="120" autocomplete="email" />
+        <label class="check"><input type="checkbox" id="consentPost" /> You may share my video on the Life in Stars Instagram page (optional).</label>
+        <label class="check"><input type="checkbox" id="agree" /> <span>I agree to the <a href="terms.html" target="_blank">Terms</a>, <a href="refund.html" target="_blank">Refund policy</a> and <a href="privacy.html" target="_blank">Privacy policy</a>, and I've checked the names and ages are correct.</span></label>
+      </div>
+
+      <div class="card summary hidden" id="summary"></div>
+      <p class="err" id="err" role="alert"></p>
+      <div class="actions">
+        <button type="button" class="btn ghost" id="reviewBtn">Review my story</button>
+        <button type="submit" class="btn gold hidden" id="payBtn">Pay &amp; place order</button>
+      </div>
+    </form>
+
+    <footer>
+      <a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="refund.html">Refunds</a><a href="contact.html">Contact</a>
+      <p>© <span id="yr"></span> Life in Stars</p>
+    </footer>
+  </div>
+
+  <template id="personTpl">
+    <div class="card person">
+      <div class="num"><span class="hint idx"></span><button type="button" class="icon-btn rm" aria-label="Remove person">Remove</button></div>
+      <div class="row">
+        <div><label class="f">Name (any language)</label><input type="text" class="p-name" maxlength="40" autocomplete="off" /></div>
+        <div><label class="f">Relation</label>
+          <select class="p-rel">
+            <option value="mother">Mother</option><option value="father">Father</option>
+            <option value="grandmother">Grandmother (father's side)</option><option value="grandfather">Grandfather (father's side)</option>
+            <option value="grandmother-m">Grandmother (mother's side)</option><option value="grandfather-m">Grandfather (mother's side)</option>
+            <option value="sibling">Brother / Sister</option><option value="partner">Husband / Wife / Partner</option>
+            <option value="child">Son / Daughter</option><option value="friend" selected>Friend</option><option value="other">Other</option>
+          </select></div>
+      </div>
+      <label class="f">Label above their name <span class="hint">(optional, e.g. "Best friend", "Papa")</span></label>
+      <input type="text" class="p-role" maxlength="30" />
+      <div class="row">
+        <div><label class="f">Arrived at age <span class="hint">(empty = before birth)</span></label><input type="number" class="p-from" min="0" max="110" inputmode="numeric" /></div>
+        <div><label class="f">What happened</label>
+          <select class="p-fate">
+            <option value="stays">Stayed</option><option value="passes">Passed through briefly (school friend, etc.)</option>
+            <option value="leaves">Moved away</option><option value="dies">Passed away</option>
+          </select></div>
+      </div>
+      <div class="to-box hidden"><label class="f to-label">At age</label><input type="number" class="p-to" min="0" max="110" inputmode="numeric" /></div>
+    </div>
+  </template>
+
+  <script>
+    // ---- settings ----
+    const ORDER_URL = "https://n8n.snbajaj.com/webhook/lifeinstars-order";
+    const PLANS = [
+      { id: "basic", name: "Basic", price: 199, people: 8, eta: "Delivered within 3 days" },
+      { id: "family", name: "Family", price: 349, people: 15, eta: "Delivered within 3 days" },
+      { id: "rush", name: "Rush", price: 499, people: 15, eta: "Delivered within 12 hours" },
+    ];
+
+    const $ = (s, r = document) => r.querySelector(s);
+    const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+    $("#yr").textContent = new Date().getFullYear();
+
+    // plans
+    $("#plans").innerHTML = PLANS.map((p, i) => `
+      <label class="plan"><input type="radio" name="plan" value="${p.id}" ${i === 1 ? "checked" : ""} />
+        <span class="box"><span class="name">${p.name}</span><div class="price">₹${p.price}</div>
+        <ul><li>Up to ${p.people} people</li><li>${p.eta}</li><li>Names in any language</li></ul></span></label>`).join("");
+    const plan = () => PLANS.find((p) => p.id === $("input[name=plan]:checked").value);
+
+    // main person
+    function syncMain() {
+      const alive = $("input[name=alive]:checked").value === "yes";
+      $("#aliveBox").classList.toggle("hidden", !alive);
+      $("#passedBox").classList.toggle("hidden", alive);
+      const imagine = $("input[name=ending]:checked").value === "star";
+      $("#imagineBox").classList.toggle("hidden", !imagine);
+      $("#nowBox").classList.toggle("hidden", imagine);
+      const mine = $("input[name=whose]:checked").value === "me";
+      $("#mainRole").placeholder = mine ? "You" : "e.g. Papa, Dadi, Our Mom";
+    }
+    $$("input[name=alive], input[name=ending], input[name=whose]").forEach((el) => el.addEventListener("change", syncMain));
+    syncMain();
+
+    // people
+    function addPerson(pre = {}) {
+      const node = $("#personTpl").content.firstElementChild.cloneNode(true);
+      const fate = $(".p-fate", node), toBox = $(".to-box", node);
+      const syncFate = () => {
+        toBox.classList.toggle("hidden", !["leaves", "dies"].includes(fate.value));
+        $(".to-label", node).textContent = fate.value === "dies" ? "Passed away at age" : "Moved away at age";
+        $(".p-from", node).placeholder = fate.value === "passes" ? "required" : "";
+      };
+      fate.addEventListener("change", syncFate);
+      $(".rm", node).addEventListener("click", () => { node.remove(); renumber(); });
+      if (pre.rel) $(".p-rel", node).value = pre.rel;
+      if (pre.fate) fate.value = pre.fate;
+      syncFate();
+      $("#people").appendChild(node);
+      renumber();
+    }
+    function renumber() {
+      const cards = $$("#people .person");
+      cards.forEach((c, i) => ($(".idx", c).textContent = "#" + (i + 1)));
+      $("#peopleCount").textContent = `${cards.length} of ${plan().people} people on the ${plan().name} plan`;
+      $("#summary").classList.add("hidden"); $("#payBtn").classList.add("hidden");
+    }
+    $("#addPerson").addEventListener("click", () => addPerson());
+    $$("input[name=plan]").forEach((el) => el.addEventListener("change", renumber));
+    addPerson({ rel: "mother" }); addPerson({ rel: "father" });
+
+    // collect + validate (n8n validates again; this is for quick feedback)
+    const num = (v) => (v === "" || v == null ? null : Number(v));
+    function collect() {
+      const errs = [];
+      const alive = $("input[name=alive]:checked").value === "yes";
+      const ending = alive ? $("input[name=ending]:checked").value : "star";
+      const finalAge = alive ? num(ending === "star" ? $("#imagineAge").value : $("#ageNow").value) : num($("#agePassed").value);
+      const main = $("#mainName").value.trim();
+      if (!main) errs.push("Add the main person's name.");
+      if (!(finalAge >= 1 && finalAge <= 110)) errs.push("Add their age (1–110).");
+      const people = $$("#people .person").map((c, i) => {
+        const rel = $(".p-rel", c).value;
+        const p = { name: $(".p-name", c).value.trim(), relation: rel.replace("-m", ""), fate: $(".p-fate", c).value,
+          from: num($(".p-from", c).value), role: $(".p-role", c).value.trim() };
+        if (rel.endsWith("-m")) p.side = "mother";
+        if (["leaves", "dies"].includes(p.fate)) p.to = num($(".p-to", c).value);
+        const who = p.name || `Person #${i + 1}`;
+        if (!p.name) errs.push(`Person #${i + 1} needs a name.`);
+        if (p.fate === "passes" && p.from == null) errs.push(`${who}: add the age they passed through.`);
+        if (p.from != null && (p.from < 0 || p.from > finalAge)) errs.push(`${who}: arrival age must be between 0 and ${finalAge}.`);
+        if (p.to !== undefined) {
+          if (p.to == null || p.to < 0 || p.to > finalAge) errs.push(`${who}: the age they ${p.fate === "dies" ? "passed away" : "moved away"} must be between 0 and ${finalAge}.`);
+          else if (p.from != null && p.to <= p.from) errs.push(`${who}: they can't leave before they arrive.`);
+        }
+        if (!p.role) delete p.role;
+        return p;
+      });
+      if (!people.length) errs.push("Add at least one person.");
+      if (people.length > plan().people) errs.push(`The ${plan().name} plan allows up to ${plan().people} people. Choose Family or remove someone.`);
+      const email = $("#buyerEmail").value.trim();
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) errs.push("Add a valid email for delivery.");
+      if (!$("#buyerName").value.trim()) errs.push("Add your name.");
+      if (!$("#agree").checked) errs.push("Please accept the terms.");
+      const order = {
+        plan: plan().id,
+        story: { ending, me: { name: main, role: $("#mainRole").value.trim() || ($("input[name=whose]:checked").value === "me" ? "You" : ""), finalAge }, people },
+        buyer: { name: $("#buyerName").value.trim(), email, phone: $("#buyerPhone").value.trim() },
+        consentToPost: $("#consentPost").checked,
+      };
+      return { errs, order };
+    }
+
+    const FATE = { stays: "Stayed", passes: "Passed through", leaves: "Moved away", dies: "Passed away" };
+    const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    $("#reviewBtn").addEventListener("click", () => {
+      const { errs, order } = collect();
+      $("#err").textContent = errs[0] || "";
+      if (errs.length) return;
+      const s = order.story, p = plan();
+      $("#summary").innerHTML = `
+        <h3>Check everything once more</h3>
+        <p class="hint">This is exactly what will appear in the video.</p>
+        <table><tr><th>Name</th><th>Relation</th><th>Arrived</th><th>What happened</th></tr>
+        <tr><td><b>${esc(s.me.name)}</b>${s.me.role ? "<br><span class=hint>" + esc(s.me.role) + "</span>" : ""}</td><td>Main person</td><td>Birth</td>
+          <td>${s.ending === "continues" ? "Story continues at " + s.me.finalAge : "Becomes the brightest star at " + s.me.finalAge}</td></tr>
+        ${s.people.map((q) => `<tr><td>${esc(q.name)}${q.role ? "<br><span class=hint>" + esc(q.role) + "</span>" : ""}</td>
+          <td>${esc(q.relation)}${q.side ? " (mother's side)" : ""}</td><td>${q.from == null ? "Before birth" : "Age " + q.from}</td>
+          <td>${FATE[q.fate]}${q.to != null ? " at " + q.to : ""}</td></tr>`).join("")}
+        </table>
+        <div class="total"><span>${p.name} · ${p.eta.toLowerCase()}</span><b>₹${p.price}</b></div>`;
+      $("#summary").classList.remove("hidden");
+      $("#payBtn").classList.remove("hidden");
+      $("#summary").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    $("#order").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const { errs, order } = collect();
+      if (errs.length) { $("#err").textContent = errs[0]; return; }
+      const btn = $("#payBtn");
+      btn.disabled = true; btn.textContent = "Creating secure payment…"; $("#err").textContent = "";
+      try {
+        const r = await fetch(ORDER_URL, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(order) });
+        const j = await r.json().catch(() => ({}));
+        if (!r.ok || !j.paymentUrl) throw new Error(j.error || "Could not start the payment. Please try again.");
+        location.href = j.paymentUrl;
+      } catch (err) {
+        $("#err").textContent = err.message;
+        btn.disabled = false; btn.textContent = "Pay & place order";
+      }
+    });
+  </script>
+</body>
+</html>
