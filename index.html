@@ -107,9 +107,9 @@
     <div class="card person">
       <div class="num"><span class="hint idx"></span><button type="button" class="icon-btn rm" aria-label="Remove person">Remove</button></div>
       <div class="row">
-        <div><label class="f">Name (any language)</label><input type="text" class="p-name" maxlength="40" autocomplete="off" /></div>
+        <div><label class="f">Name (any language)</label><input type="text" class="p-name" maxlength="40" autocomplete="off" aria-label="Person's name" /></div>
         <div><label class="f">Relation</label>
-          <select class="p-rel">
+          <select class="p-rel" aria-label="Relation">
             <option value="mother">Mother</option><option value="father">Father</option>
             <option value="grandmother">Grandmother (father's side)</option><option value="grandfather">Grandfather (father's side)</option>
             <option value="grandmother-m">Grandmother (mother's side)</option><option value="grandfather-m">Grandfather (mother's side)</option>
@@ -118,16 +118,16 @@
           </select></div>
       </div>
       <label class="f">Label above their name <span class="hint">(optional, e.g. "Best friend", "Papa")</span></label>
-      <input type="text" class="p-role" maxlength="30" />
+      <input type="text" class="p-role" maxlength="30" aria-label="Label above their name" />
       <div class="row">
-        <div><label class="f">Arrived at age <span class="hint">(empty = before birth)</span></label><input type="number" class="p-from" min="0" max="110" inputmode="numeric" /></div>
+        <div><label class="f">Arrived at age <span class="hint">(empty = before birth)</span></label><input type="number" class="p-from" min="0" max="110" inputmode="numeric" aria-label="Arrived at age" /></div>
         <div><label class="f">What happened</label>
-          <select class="p-fate">
+          <select class="p-fate" aria-label="What happened">
             <option value="stays">Stayed</option><option value="passes">Passed through briefly (school friend, etc.)</option>
             <option value="leaves">Moved away</option><option value="dies">Passed away</option>
           </select></div>
       </div>
-      <div class="to-box hidden"><label class="f to-label">At age</label><input type="number" class="p-to" min="0" max="110" inputmode="numeric" /></div>
+      <div class="to-box hidden"><label class="f to-label">At age</label><input type="number" class="p-to" min="0" max="110" inputmode="numeric" aria-label="Age" /></div>
     </div>
   </template>
 
@@ -211,6 +211,7 @@
         const who = p.name || `Person #${i + 1}`;
         if (!p.name) errs.push(`Person #${i + 1} needs a name.`);
         if (p.fate === "passes" && p.from == null) errs.push(`${who}: add the age they passed through.`);
+        if (p.fate === "passes" && p.from != null && p.from > finalAge - 1) errs.push(`${who}: a brief appearance must be at least 1 year before the story ends (age ${finalAge - 1} or earlier).`);
         if (p.from != null && (p.from < 0 || p.from > finalAge)) errs.push(`${who}: arrival age must be between 0 and ${finalAge}.`);
         if (p.to !== undefined) {
           if (p.to == null || p.to < 0 || p.to > finalAge) errs.push(`${who}: the age they ${p.fate === "dies" ? "passed away" : "moved away"} must be between 0 and ${finalAge}.`);
@@ -236,6 +237,12 @@
 
     const FATE = { stays: "Stayed", passes: "Passed through", leaves: "Moved away", dies: "Passed away" };
     const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    function staleReview(e) {
+      if (e.target.closest("#summary")) return;
+      $("#summary").classList.add("hidden"); $("#payBtn").classList.add("hidden");
+    }
+    $("#order").addEventListener("input", staleReview);
+    $("#order").addEventListener("change", staleReview);
     $("#reviewBtn").addEventListener("click", () => {
       const { errs, order } = collect();
       $("#err").textContent = errs[0] || "";
@@ -251,6 +258,7 @@
           <td>${esc(q.relation)}${q.side ? " (mother's side)" : ""}</td><td>${q.from == null ? "Before birth" : "Age " + q.from}</td>
           <td>${FATE[q.fate]}${q.to != null ? " at " + q.to : ""}</td></tr>`).join("")}
         </table>
+        <p class="hint" style="margin-top:12px">Your video will be emailed to <b style="color:var(--ink)">${esc(order.buyer.email)}</b>. Check it's spelled right.</p>
         <div class="total"><span>${p.name} · ${p.eta.toLowerCase()}</span><b>₹${p.price}</b></div>`;
       $("#summary").classList.remove("hidden");
       $("#payBtn").classList.remove("hidden");
