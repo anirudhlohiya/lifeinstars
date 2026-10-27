@@ -3,109 +3,188 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Life in Stars · Your life story as a constellation</title>
-  <meta name="description" content="A 60-second video of your life (or someone you love) told as lines of light. The people who left become stars. Made to order, delivered by email." />
+  <title>Life in Stars · Your family's life story as a 60-second video of stars</title>
+  <meta name="description" content="Type who was there and when. Every person becomes a line of light; the ones who've left become stars that join into your family's constellation. A 60-second video, delivered by email." />
+  <meta property="og:title" content="Life in Stars · Your family's life story as a sky of stars" />
+  <meta property="og:description" content="A 60-second video of a whole life, made from just names and ages." />
+  <meta property="og:image" content="https://stars.lohiyaanirudh.tech/sample.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,400&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="wrap">
     <header class="top">
-      <a class="brand" href="./">Life in <span>Stars</span></a>
-      <nav><a href="#order">Order</a><a href="contact.html">Contact</a></nav>
+      <a class="brand" href="./" aria-label="Life in Stars home">
+        <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true"><circle cx="13" cy="13" r="12" fill="none" stroke="#c9a35b" stroke-width="1"/><path d="M13 4.5l1.3 7.2 7.2 1.3-7.2 1.3L13 21.5l-1.3-7.2L4.5 13l7.2-1.3z" fill="#e2c27f"/></svg>
+        Life in <span>Stars</span>
+      </a>
+      <nav><a href="#how" class="wide">How it works</a><a href="#order">Order</a><a href="contact.html">Contact</a></nav>
     </header>
 
+    <!-- 01 · HERO -->
     <section class="hero">
-      <h1>Every life is a sky<br />full of people.</h1>
-      <p>A 60-second video of a whole life told as lines of light. Family, friends, loves and goodbyes. The ones who left become stars, and at the end they join into a constellation.</p>
-      <video class="sample" src="sample.mp4" poster="sample.jpg" controls playsinline preload="none" muted></video>
-      <div class="steps">
-        <div><b>1. Tell the story</b>Names, how they're related, the ages things happened.</div>
-        <div><b>2. Pay securely</b>Razorpay: UPI, cards, net banking.</div>
-        <div><b>3. Get the video</b>A 1080×1920 MP4 in your email, ready for Instagram or WhatsApp.</div>
+      <div>
+        <div class="mono">Observing log · a whole life in 60 seconds</div>
+        <h1>Your family's whole life story, as a 60-second sky of <em>stars</em>.</h1>
+        <p class="sub">Type who was there and when. Every person becomes a line of light, and the ones who've left rise into stars that join into your family's constellation.</p>
+        <a class="btn brass" href="#order">Write your family's story
+          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h9m-4-4 4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        <div class="easy"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="7.5" fill="none" stroke="#c9a35b"/><path d="M9 5v4l2.5 1.5" fill="none" stroke="#c9a35b" stroke-linecap="round"/></svg>
+          <span><b>About 3 minutes.</b> Only names and rough ages, no photos. Saved as you type.</span></div>
+      </div>
+      <div class="scope" aria-label="Sample video">
+        <svg class="ring" viewBox="0 0 400 400" aria-hidden="true">
+          <circle cx="200" cy="200" r="196" fill="none" stroke="#c9a35b" stroke-opacity=".55" stroke-width="1.2"/>
+          <circle cx="200" cy="200" r="184" fill="none" stroke="#c9a35b" stroke-opacity=".25"/>
+          <g id="ticks" stroke="#c9a35b" stroke-opacity=".7"></g>
+        </svg>
+        <div class="ring2"></div>
+        <span class="coord c1">RA 04h 21m · Dec +18°</span>
+        <span class="coord c2">Sample · names changed</span>
+        <span class="redlight" title="Observatory night-light"></span>
+        <div class="glass">
+          <video src="sample.mp4" poster="sample.jpg" controls playsinline preload="none"></video>
+        </div>
       </div>
     </section>
 
-    <form id="order" novalidate>
-      <h2>Order your video</h2>
+    <div class="trust" aria-label="Why you can trust this">
+      <div><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><rect x="3.5" y="8" width="11" height="7.5" rx="1.5" fill="none" stroke="currentColor"/><path d="M6 8V5.8a3 3 0 0 1 6 0V8" fill="none" stroke="currentColor"/></svg>Secure checkout by Razorpay: UPI, cards, net banking</div>
+      <div><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M3 9.5 7 13l8-8" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>You see your exact story before paying</div>
+      <div><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M4 9a5 5 0 1 0 1.6-3.7M4 3.5v2.2h2.2" fill="none" stroke="currentColor"/></svg>Full refund if it's late · one free correction</div>
+      <div><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><rect x="2.5" y="4" width="13" height="10" rx="1.5" fill="none" stroke="currentColor"/><path d="m3 5 6 5 6-5" fill="none" stroke="currentColor"/></svg>A real person answers: <a href="mailto:gyaansharma22@gmail.com">gyaansharma22@gmail.com</a></div>
+    </div>
 
-      <div class="card">
-        <h3>Choose a plan</h3>
-        <div class="plans" id="plans"></div>
-      </div>
+    <div class="lineage">
+      <!-- 02 · HOW -->
+      <section class="node reveal" id="how">
+        <div class="mono">01 · 02 · 03</div>
+        <h2>From a few names to your family's sky</h2>
+        <p class="lede">No editing, no photos, no app. You write who was there, we turn it into the video.</p>
+        <div class="steps">
+          <div class="step"><div class="n">01 · TELL</div><h3>Write the story</h3><p>Names in any language, how they're related, and roughly when they came and went. Rough ages are fine.</p></div>
+          <div class="step"><div class="n">02 · CHECK &amp; PAY</div><h3>See it before you pay</h3><p>You review the exact names and ages that will appear, then pay securely. We email you a receipt with your story.</p></div>
+          <div class="step"><div class="n">03 · RECEIVE</div><h3>Get the video</h3><p>A 60-second vertical MP4 with music, sent to your email. Ready for Instagram, WhatsApp, or a family get-together.</p></div>
+        </div>
+      </section>
 
-      <div class="card">
-        <h3>Whose life is this story about?</h3>
-        <label class="radio"><input type="radio" name="whose" value="me" checked /> My own life</label>
-        <label class="radio"><input type="radio" name="whose" value="other" /> Someone I love (a gift or a memorial)</label>
+      <!-- 03 · WHAT YOU GET -->
+      <section class="node reveal">
+        <div class="mono">What's in the video</div>
+        <h2>Everyone who walked with you</h2>
+        <div class="bento">
+          <div class="cell w4"><h3>Every person is a line of light</h3><p>Family who were there before you, friends who arrived, people who moved away. Each one climbs the sky alongside your age.</p>
+            <div class="names">Dadi <span>·</span> दादाजी <span>·</span> Ammi <span>·</span> அம்மா <span>·</span> Bhaiya <span>·</span> Best friend</div></div>
+          <div class="cell w2"><h3>Any language</h3><p>Hindi, Tamil, Bengali, Urdu, Punjabi, English… typed exactly as you'd say them.</p></div>
+          <div class="cell w2"><h3>The ones who left become stars</h3><p>At the end, they join into your family's own constellation.</p></div>
+          <div class="cell w2"><h3>For the living, too</h3><p>Make it about yourself, a parent's birthday, or an anniversary. The story can simply continue.</p></div>
+          <div class="cell w2"><h3>Music included</h3><p>A soft soundtrack is built in. Post it as it is, or add your own song on Instagram.</p></div>
+        </div>
+      </section>
 
-        <label class="f" for="mainName">Their name, as it should appear (any language)</label>
-        <input id="mainName" type="text" maxlength="40" autocomplete="off" placeholder="e.g. Arjun, राहुल, அருண்" />
-        <label class="f" for="mainRole">Small label above the name <span class="hint">(optional)</span></label>
-        <input id="mainRole" type="text" maxlength="30" placeholder="You" />
+      <!-- 04 · ORDER (observing log) -->
+      <section class="node star reveal" id="order">
+        <form class="log" id="orderForm" novalidate>
+          <div class="logno"><span><span class="dot"></span>Observing log</span><span class="saved" id="savedNote" aria-live="polite"></span></div>
+          <h2>Write your family's story</h2>
+          <div id="restoreBar" class="restore hidden"><span>We kept what you typed last time.</span><button type="button" class="icon-btn" id="startOver">Start over</button></div>
 
-        <h3 style="margin-top:16px">Are they still with us?</h3>
-        <label class="radio"><input type="radio" name="alive" value="yes" checked /> Yes</label>
-        <label class="radio"><input type="radio" name="alive" value="no" /> No, they have passed away</label>
-
-        <div id="aliveBox">
-          <h3 style="margin-top:14px">How should the video end?</h3>
-          <label class="radio"><input type="radio" name="ending" value="continues" checked /> At today's age: the journey continues</label>
-          <label class="radio"><input type="radio" name="ending" value="star" /> Imagine the whole life, ending as the brightest star</label>
-          <div id="nowBox">
-            <label class="f" for="ageNow">Age today</label>
-            <input id="ageNow" type="number" min="1" max="110" inputmode="numeric" />
+          <div class="card">
+            <h3>Choose a plan</h3>
+            <div class="plans" id="plans"></div>
           </div>
-          <div id="imagineBox" class="hidden">
-            <label class="f" for="imagineAge">Imagined final age</label>
-            <input id="imagineAge" type="number" min="1" max="110" value="85" inputmode="numeric" />
+
+          <div class="card">
+            <h3>Whose life is this story about?</h3>
+            <label class="radio"><input type="radio" name="whose" value="me" checked /> My own life</label>
+            <label class="radio"><input type="radio" name="whose" value="other" /> Someone I love (a gift or a memorial)</label>
+
+            <label class="f" for="mainName">Their name, as it should appear (any language)</label>
+            <input id="mainName" type="text" maxlength="40" autocomplete="off" placeholder="e.g. Arjun, राहुल, அருண்" />
+            <label class="f" for="mainRole">Small label above the name <span class="hint">(optional)</span></label>
+            <input id="mainRole" type="text" maxlength="30" placeholder="You" />
+
+            <h3 style="margin-top:16px">Are they still with us?</h3>
+            <label class="radio"><input type="radio" name="alive" value="yes" checked /> Yes</label>
+            <label class="radio"><input type="radio" name="alive" value="no" /> No, they have passed away</label>
+
+            <div id="aliveBox">
+              <h3 style="margin-top:14px">How should the video end?</h3>
+              <label class="radio"><input type="radio" name="ending" value="continues" checked /> At today's age: the journey continues</label>
+              <label class="radio"><input type="radio" name="ending" value="star" /> Imagine the whole life, ending as the brightest star</label>
+              <div id="nowBox">
+                <label class="f" for="ageNow">Age today</label>
+                <input id="ageNow" type="number" min="1" max="110" inputmode="numeric" />
+              </div>
+              <div id="imagineBox" class="hidden">
+                <label class="f" for="imagineAge">Imagined final age</label>
+                <input id="imagineAge" type="number" min="1" max="110" value="85" inputmode="numeric" />
+              </div>
+            </div>
+            <div id="passedBox" class="hidden">
+              <label class="f" for="agePassed">Age when they passed away</label>
+              <input id="agePassed" type="number" min="1" max="110" inputmode="numeric" />
+            </div>
           </div>
-        </div>
-        <div id="passedBox" class="hidden">
-          <label class="f" for="agePassed">Age when they passed away</label>
-          <input id="agePassed" type="number" min="1" max="110" inputmode="numeric" />
-        </div>
-      </div>
 
-      <div class="card">
-        <h3>The people in the story</h3>
-        <p class="hint">Add everyone who should appear. "Arrived" is the main person's age when this person came into their life. Leave it empty for family who were there before they were born.</p>
-      </div>
-      <div id="people"></div>
-      <div class="actions"><button type="button" class="btn ghost" id="addPerson">+ Add a person</button></div>
-      <p class="hint" id="peopleCount"></p>
+          <div class="card">
+            <h3>The people in the story</h3>
+            <p class="hint">"Arrived at age" is the main person's age when this person came into their life. Leave it empty for family who were there before they were born. Rough ages are fine.</p>
+          </div>
+          <div id="people"></div>
+          <div class="actions"><button type="button" class="btn ghost" id="addPerson">+ Add a person</button></div>
+          <p class="hint" id="peopleCount"></p>
 
-      <div class="card">
-        <h3>Your details</h3>
-        <div class="row">
-          <div><label class="f" for="buyerName">Your name</label><input id="buyerName" type="text" maxlength="60" autocomplete="name" /></div>
-          <div><label class="f" for="buyerPhone">Phone <span class="hint">(for payment receipt)</span></label><input id="buyerPhone" type="tel" maxlength="15" autocomplete="tel" inputmode="tel" /></div>
-        </div>
-        <label class="f" for="buyerEmail">Email: the video will be sent here</label>
-        <input id="buyerEmail" type="email" maxlength="120" autocomplete="email" />
-        <label class="check"><input type="checkbox" id="consentPost" /> You may share my video on the Life in Stars Instagram page (optional).</label>
-        <label class="check"><input type="checkbox" id="agree" /> <span>I agree to the <a href="terms.html" target="_blank">Terms</a>, <a href="refund.html" target="_blank">Refund policy</a> and <a href="privacy.html" target="_blank">Privacy policy</a>, and I've checked the names and ages are correct.</span></label>
-      </div>
+          <div class="card">
+            <h3>Your details</h3>
+            <div class="row">
+              <div><label class="f" for="buyerName">Your name</label><input id="buyerName" type="text" maxlength="60" autocomplete="name" /></div>
+              <div><label class="f" for="buyerPhone">Phone <span class="hint">(for the payment receipt)</span></label><input id="buyerPhone" type="tel" maxlength="15" autocomplete="tel" inputmode="tel" /></div>
+            </div>
+            <label class="f" for="buyerEmail">Email: the video will be sent here</label>
+            <input id="buyerEmail" type="email" maxlength="120" autocomplete="email" />
+            <label class="check"><input type="checkbox" id="consentPost" /> You may share my video on the Life in Stars Instagram page (optional).</label>
+            <label class="check"><input type="checkbox" id="agree" /> <span>I agree to the <a href="terms.html" target="_blank">Terms</a>, <a href="refund.html" target="_blank">Refund policy</a> and <a href="privacy.html" target="_blank">Privacy policy</a>, and I've checked the names and ages are correct.</span></label>
+          </div>
 
-      <div class="card summary hidden" id="summary"></div>
-      <p class="err" id="err" role="alert"></p>
-      <div class="actions">
-        <button type="button" class="btn ghost" id="reviewBtn">Review my story</button>
-        <button type="submit" class="btn gold hidden" id="payBtn">Pay &amp; place order</button>
-      </div>
-    </form>
+          <div class="card summary hidden" id="summary"></div>
+          <p class="err" id="err" role="alert"></p>
+          <div class="actions">
+            <button type="button" class="btn ghost" id="reviewBtn">Review my story</button>
+            <button type="submit" class="btn ink hidden" id="payBtn">Pay &amp; place order</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- 05 · FAQ -->
+      <section class="node reveal" id="faq">
+        <div class="mono">Questions</div>
+        <h2>Before you order</h2>
+        <details><summary>How long does it take?</summary><p>Basic and Family plans are delivered within 3 days, Rush within 12 hours. Most videos are ready much sooner. You'll get an email the moment your order is received, and another when the video is ready.</p></details>
+        <details><summary>What if I spot a mistake after paying?</summary><p>Reply to the order email with the correction. If the video has already been sent, we'll remake it once for free within 7 days.</p></details>
+        <details><summary>What if it's late, or I change my mind?</summary><p>If your video arrives later than promised, you get a full refund. You can also cancel for a full refund any time before it's delivered. See the <a href="refund.html">refund policy</a>.</p></details>
+        <details><summary>Is my family's information private?</summary><p>Your story is used only to make your video. It's deleted 60 days after delivery, and we never post your video unless you tick the box allowing it. Payments are handled by Razorpay; we never see your card or UPI details. See the <a href="privacy.html">privacy policy</a>.</p></details>
+        <details><summary>Can I make one for someone who has passed away?</summary><p>Yes. Choose "Someone I love", then "No, they have passed away". Their video ends with them becoming the brightest star among everyone they loved.</p></details>
+        <details><summary>Who do I talk to if something goes wrong?</summary><p>Email <a href="mailto:gyaansharma22@gmail.com">gyaansharma22@gmail.com</a> with your order ID. A person replies within 24 hours.</p></details>
+      </section>
+
+      <section class="node star final reveal">
+        <h2>Every life is a sky full of people.<br /><em style="color:var(--brass-2)">Map yours.</em></h2>
+        <a class="btn brass" href="#order">Write your family's story</a>
+      </section>
+    </div>
 
     <footer>
-      <a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="refund.html">Refunds</a><a href="contact.html">Contact</a>
-      <p>© <span id="yr"></span> Life in Stars</p>
+      <a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="refund.html">Refunds &amp; delivery</a><a href="contact.html">Contact</a>
+      <p>© <span id="yr"></span> Life in Stars · <a href="mailto:gyaansharma22@gmail.com" style="margin:0">gyaansharma22@gmail.com</a></p>
     </footer>
   </div>
 
   <template id="personTpl">
     <div class="card person">
-      <div class="num"><span class="hint idx"></span><button type="button" class="icon-btn rm" aria-label="Remove person">Remove</button></div>
+      <div class="num"><span class="idx"></span><button type="button" class="icon-btn rm" aria-label="Remove person">Remove</button></div>
       <div class="row">
         <div><label class="f">Name (any language)</label><input type="text" class="p-name" maxlength="40" autocomplete="off" aria-label="Person's name" /></div>
         <div><label class="f">Relation</label>
@@ -134,9 +213,10 @@
   <script>
     // ---- settings ----
     const ORDER_URL = "https://n8n.snbajaj.com/webhook/lifeinstars-order";
+    const DRAFT_KEY = "lifeinstars-draft-v1";
     const PLANS = [
       { id: "basic", name: "Basic", price: 199, people: 8, eta: "Delivered within 3 days" },
-      { id: "family", name: "Family", price: 349, people: 15, eta: "Delivered within 3 days" },
+      { id: "family", name: "Family", price: 349, people: 15, eta: "Delivered within 3 days", tag: "Most families" },
       { id: "rush", name: "Rush", price: 499, people: 15, eta: "Delivered within 12 hours" },
     ];
 
@@ -144,11 +224,21 @@
     const $$ = (s, r = document) => [...r.querySelectorAll(s)];
     $("#yr").textContent = new Date().getFullYear();
 
+    // the brass ring's degree ticks
+    $("#ticks").innerHTML = Array.from({ length: 72 }, (_, i) => {
+      const a = (i * 5 * Math.PI) / 180, long = i % 6 === 0, r1 = 196, r2 = long ? 182 : 189;
+      return `<line x1="${200 + r1 * Math.cos(a)}" y1="${200 + r1 * Math.sin(a)}" x2="${200 + r2 * Math.cos(a)}" y2="${200 + r2 * Math.sin(a)}" stroke-width="${long ? 1.4 : 0.8}"/>`;
+    }).join("");
+
+    // sections drift in as you reach them
+    const io = "IntersectionObserver" in window ? new IntersectionObserver((es) => es.forEach((e) => e.isIntersecting && (e.target.classList.add("in"), io.unobserve(e.target))), { threshold: 0.08 }) : null;
+    $$(".reveal").forEach((el) => (io ? io.observe(el) : el.classList.add("in")));
+
     // plans
-    $("#plans").innerHTML = PLANS.map((p, i) => `
-      <label class="plan"><input type="radio" name="plan" value="${p.id}" ${i === 1 ? "checked" : ""} />
-        <span class="box"><span class="name">${p.name}</span><div class="price">₹${p.price}</div>
-        <ul><li>Up to ${p.people} people</li><li>${p.eta}</li><li>Names in any language</li></ul></span></label>`).join("");
+    $("#plans").innerHTML = PLANS.map((p) => `
+      <label class="plan"><input type="radio" name="plan" value="${p.id}" ${p.id === "family" ? "checked" : ""} />
+        <span class="box">${p.tag ? `<span class="tag">${p.tag}</span>` : ""}<span class="name">${p.name}</span><div class="price">₹${p.price}</div>
+        <ul><li>Up to ${p.people} people</li><li>${p.eta}</li><li>Music and any language included</li></ul></span></label>`).join("");
     const plan = () => PLANS.find((p) => p.id === $("input[name=plan]:checked").value);
 
     // main person
@@ -163,7 +253,6 @@
       $("#mainRole").placeholder = mine ? "You" : "e.g. Papa, Dadi, Our Mom";
     }
     $$("input[name=alive], input[name=ending], input[name=whose]").forEach((el) => el.addEventListener("change", syncMain));
-    syncMain();
 
     // people
     function addPerson(pre = {}) {
@@ -175,9 +264,13 @@
         $(".p-from", node).placeholder = fate.value === "passes" ? "required" : "";
       };
       fate.addEventListener("change", syncFate);
-      $(".rm", node).addEventListener("click", () => { node.remove(); renumber(); });
+      $(".rm", node).addEventListener("click", () => { node.remove(); renumber(); saveDraft(); });
       if (pre.rel) $(".p-rel", node).value = pre.rel;
       if (pre.fate) fate.value = pre.fate;
+      if (pre.name != null) $(".p-name", node).value = pre.name;
+      if (pre.role != null) $(".p-role", node).value = pre.role;
+      if (pre.from != null) $(".p-from", node).value = pre.from;
+      if (pre.to != null) $(".p-to", node).value = pre.to;
       syncFate();
       $("#people").appendChild(node);
       renumber();
@@ -188,9 +281,41 @@
       $("#peopleCount").textContent = `${cards.length} of ${plan().people} people on the ${plan().name} plan`;
       $("#summary").classList.add("hidden"); $("#payBtn").classList.add("hidden");
     }
-    $("#addPerson").addEventListener("click", () => addPerson());
+    $("#addPerson").addEventListener("click", () => { addPerson(); saveDraft(); });
     $$("input[name=plan]").forEach((el) => el.addEventListener("change", renumber));
-    addPerson({ rel: "mother" }); addPerson({ rel: "father" });
+
+    // ---- no lost work: everything typed is kept in this browser until payment ----
+    const FIELDS = ["mainName", "mainRole", "ageNow", "imagineAge", "agePassed", "buyerName", "buyerPhone", "buyerEmail"];
+    const RADIOS = ["plan", "whose", "alive", "ending"];
+    let saveTimer = null;
+    function saveDraft() {
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(() => {
+        const d = { v: 1, at: Date.now(), consentPost: $("#consentPost").checked, fields: {}, radios: {} };
+        FIELDS.forEach((id) => (d.fields[id] = $("#" + id).value));
+        RADIOS.forEach((n) => (d.radios[n] = $(`input[name=${n}]:checked`).value));
+        d.people = $$("#people .person").map((c) => ({ name: $(".p-name", c).value, rel: $(".p-rel", c).value, role: $(".p-role", c).value,
+          from: $(".p-from", c).value, fate: $(".p-fate", c).value, to: $(".p-to", c).value }));
+        try { localStorage.setItem(DRAFT_KEY, JSON.stringify(d)); $("#savedNote").textContent = "Saved on this device"; } catch { /* private mode: form still works */ }
+      }, 300);
+    }
+    function loadDraft() {
+      try { const d = JSON.parse(localStorage.getItem(DRAFT_KEY) || "null"); return d && d.v === 1 ? d : null; } catch { return null; }
+    }
+    function restore(d) {
+      FIELDS.forEach((id) => { if (d.fields && d.fields[id] != null) $("#" + id).value = d.fields[id]; });
+      RADIOS.forEach((n) => { const el = d.radios && $(`input[name=${n}][value="${d.radios[n]}"]`); if (el) el.checked = true; });
+      $("#consentPost").checked = !!d.consentPost;
+      (d.people && d.people.length ? d.people : []).forEach((p) => addPerson({ ...p, from: p.from === "" ? null : p.from, to: p.to === "" ? null : p.to }));
+    }
+    const draft = loadDraft();
+    if (draft) { restore(draft); $("#restoreBar").classList.remove("hidden"); }
+    if (!$$("#people .person").length) { addPerson({ rel: "mother" }); addPerson({ rel: "father" }); }
+    syncMain(); renumber();
+    $("#startOver").addEventListener("click", () => {
+      try { localStorage.removeItem(DRAFT_KEY); } catch {}
+      location.hash = "order"; location.reload();
+    });
 
     // collect + validate (n8n validates again; this is for quick feedback)
     const num = (v) => (v === "" || v == null ? null : Number(v));
@@ -237,12 +362,13 @@
 
     const FATE = { stays: "Stayed", passes: "Passed through", leaves: "Moved away", dies: "Passed away" };
     const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
-    function staleReview(e) {
+    function onEdit(e) {
       if (e.target.closest("#summary")) return;
       $("#summary").classList.add("hidden"); $("#payBtn").classList.add("hidden");
+      saveDraft();
     }
-    $("#order").addEventListener("input", staleReview);
-    $("#order").addEventListener("change", staleReview);
+    $("#orderForm").addEventListener("input", onEdit);
+    $("#orderForm").addEventListener("change", onEdit);
     $("#reviewBtn").addEventListener("click", () => {
       const { errs, order } = collect();
       $("#err").textContent = errs[0] || "";
@@ -258,14 +384,14 @@
           <td>${esc(q.relation)}${q.side ? " (mother's side)" : ""}</td><td>${q.from == null ? "Before birth" : "Age " + q.from}</td>
           <td>${FATE[q.fate]}${q.to != null ? " at " + q.to : ""}</td></tr>`).join("")}
         </table>
-        <p class="hint" style="margin-top:12px">Your video will be emailed to <b style="color:var(--ink)">${esc(order.buyer.email)}</b>. Check it's spelled right.</p>
+        <p class="hint" style="margin-top:12px">Your video will be emailed to <b style="color:var(--log-ink)">${esc(order.buyer.email)}</b>. Check it's spelled right.</p>
         <div class="total"><span>${p.name} · ${p.eta.toLowerCase()}</span><b>₹${p.price}</b></div>`;
       $("#summary").classList.remove("hidden");
       $("#payBtn").classList.remove("hidden");
       $("#summary").scrollIntoView({ behavior: "smooth", block: "start" });
     });
 
-    $("#order").addEventListener("submit", async (e) => {
+    $("#orderForm").addEventListener("submit", async (e) => {
       e.preventDefault();
       const { errs, order } = collect();
       if (errs.length) { $("#err").textContent = errs[0]; return; }
@@ -275,7 +401,7 @@
         const r = await fetch(ORDER_URL, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(order) });
         const j = await r.json().catch(() => ({}));
         if (!r.ok || !j.paymentUrl) throw new Error(j.error || "Could not start the payment. Please try again.");
-        location.href = j.paymentUrl;
+        location.href = j.paymentUrl; // the draft stays until payment is confirmed on the thank-you page
       } catch (err) {
         $("#err").textContent = err.message;
         btn.disabled = false; btn.textContent = "Pay & place order";

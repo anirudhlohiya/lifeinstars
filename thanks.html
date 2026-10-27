@@ -6,7 +6,7 @@
   <title>Thank you · Life in Stars</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,400&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=Manrope:wght@400;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -15,11 +15,12 @@
     <main class="prose">
       <h1 id="h">Thank you!</h1>
       <p id="msg">Your payment is being confirmed.</p>
-      <p>We'll email your video to the address you gave. If you don't see it, check your spam folder or write to <em>our email address is coming soon</em> with your order ID.</p>
+      <p>We'll email your video to the address you gave. If you don't see it, check your spam folder or write to <a href="mailto:gyaansharma22@gmail.com">gyaansharma22@gmail.com</a> with your order ID.</p>
       <p><a class="btn ghost" href="./">Back to Life in Stars</a></p>
       <script>
         const q = new URLSearchParams(location.search);
         const st = q.get("razorpay_payment_link_status"), id = q.get("razorpay_payment_link_reference_id");
+        if (st === "paid") { try { localStorage.removeItem("lifeinstars-draft-v1"); } catch {} }
         if (st === "paid") document.getElementById("msg").textContent = "Payment received" + (id ? " for order " + id : "") + ". Your video is being made now.";
         else if (st) { document.getElementById("h").textContent = "Payment not completed"; document.getElementById("msg").textContent = "Your payment didn't go through, so nothing was charged. You can try again from the order page."; }
       </script>
