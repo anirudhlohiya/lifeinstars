@@ -41,8 +41,8 @@
           <g id="ticks" stroke="#c9a35b" stroke-opacity=".7"></g>
         </svg>
         <div class="ring2"></div>
-        <span class="coord c1">RA 04h 21m · Dec +18°</span>
-        <span class="coord c2">Sample · names changed</span>
+        <span class="coord c1">Sample video · 60 seconds</span>
+        <span class="coord c2">Sample names</span>
         <span class="redlight" title="Observatory night-light"></span>
         <div class="glass">
           <video src="sample.mp4" poster="sample.jpg" controls playsinline preload="none"></video>
@@ -66,7 +66,7 @@
         <div class="steps">
           <div class="step"><div class="n">01 · TELL</div><h3>Write the story</h3><p>Names in any language, how they're related, and roughly when they came and went. Rough ages are fine.</p></div>
           <div class="step"><div class="n">02 · CHECK &amp; PAY</div><h3>See it before you pay</h3><p>You review the exact names and ages that will appear, then pay securely. We email you a receipt with your story.</p></div>
-          <div class="step"><div class="n">03 · RECEIVE</div><h3>Get the video</h3><p>A 60-second vertical MP4 with music, sent to your email. Ready for Instagram, WhatsApp, or a family get-together.</p></div>
+          <div class="step"><div class="n">03 · RECEIVE</div><h3>Get the video</h3><p>You have 24 hours (2 for Rush) to reply with any changes. Then a person checks your 60-second video before it is emailed to you, ready for Instagram, WhatsApp, or a family get-together.</p></div>
         </div>
       </section>
 
@@ -131,7 +131,7 @@
 
           <div class="card">
             <h3>The people in the story</h3>
-            <p class="hint">"Arrived at age" is the main person's age when this person came into their life. Leave it empty for family who were there before they were born. Rough ages are fine.</p>
+            <p class="hint">"Arrived at age" is the main person's age when this person came into their life. Leave it empty for family who were there before they were born. Rough ages are fine. Cards you leave empty are skipped.</p>
           </div>
           <div id="people"></div>
           <div class="actions"><button type="button" class="btn ghost" id="addPerson">+ Add a person</button></div>
@@ -150,6 +150,7 @@
           </div>
 
           <div class="card summary hidden" id="summary"></div>
+          <div id="turnstile" class="turnstile"></div>
           <p class="err" id="err" role="alert"></p>
           <div class="actions">
             <button type="button" class="btn ghost" id="reviewBtn">Review my story</button>
@@ -162,8 +163,8 @@
       <section class="node reveal" id="faq">
         <div class="mono">Questions</div>
         <h2>Before you order</h2>
-        <details><summary>How long does it take?</summary><p>Basic and Family plans are delivered within 3 days, Rush within 12 hours. Most videos are ready much sooner. You'll get an email the moment your order is received, and another when the video is ready.</p></details>
-        <details><summary>What if I spot a mistake after paying?</summary><p>Reply to the order email with the correction. If the video has already been sent, we'll remake it once for free within 7 days.</p></details>
+        <details><summary>How long does it take?</summary><p>Basic and Family plans are delivered within 3 days, Rush within 12 hours. Right after you pay, we email you your story and hold the order for 24 hours (2 hours for Rush) so you can reply with any changes. Then the video is made and checked by a person before it's emailed to you.</p></details>
+        <details><summary>What if I spot a mistake after paying?</summary><p>Reply to the order email within 24 hours (2 hours for Rush) and tell us what to fix in your own words. If we don't hear from you by then, we go ahead with the details exactly as you entered them. If the video has already been sent, we'll remake it once for free within 7 days.</p></details>
         <details><summary>What if it's late, or I change my mind?</summary><p>If your video arrives later than promised, you get a full refund. You can also cancel for a full refund any time before it's delivered. See the <a href="refund.html">refund policy</a>.</p></details>
         <details><summary>Is my family's information private?</summary><p>Your story is used only to make your video. It's deleted 60 days after delivery, and we never post your video unless you tick the box allowing it. Payments are handled by Razorpay; we never see your card or UPI details. See the <a href="privacy.html">privacy policy</a>.</p></details>
         <details><summary>Can I make one for someone who has passed away?</summary><p>Yes. Choose "Someone I love", then "No, they have passed away". Their video ends with them becoming the brightest star among everyone they loved.</p></details>
@@ -196,14 +197,14 @@
             <option value="child">Son / Daughter</option><option value="friend" selected>Friend</option><option value="other">Other</option>
           </select></div>
       </div>
-      <label class="f">Label above their name <span class="hint">(optional, e.g. "Best friend", "Papa")</span></label>
+      <label class="f">Label above their name <span class="hint">(filled in from the relation; change it to "Papa", "Dadi", "Best friend"…)</span></label>
       <input type="text" class="p-role" maxlength="30" aria-label="Label above their name" />
       <div class="row">
         <div><label class="f">Arrived at age <span class="hint">(empty = before birth)</span></label><input type="number" class="p-from" min="0" max="110" inputmode="numeric" aria-label="Arrived at age" /></div>
         <div><label class="f">What happened</label>
           <select class="p-fate" aria-label="What happened">
-            <option value="stays">Stayed</option><option value="passes">Passed through briefly (school friend, etc.)</option>
-            <option value="leaves">Moved away</option><option value="dies">Passed away</option>
+            <option value="stays">Still in my life</option><option value="passes">Crossed my path briefly</option>
+            <option value="leaves">We drifted apart / they moved away</option><option value="dies">Passed away (becomes a star)</option>
           </select></div>
       </div>
       <div class="to-box hidden"><label class="f to-label">At age</label><input type="number" class="p-to" min="0" max="110" inputmode="numeric" aria-label="Age" /></div>
@@ -214,6 +215,11 @@
     // ---- settings ----
     const ORDER_URL = "https://n8n.snbajaj.com/webhook/lifeinstars-order";
     const DRAFT_KEY = "lifeinstars-draft-v1";
+    // Cloudflare Turnstile (bot check). Empty = off. The site key is public; the secret lives only in n8n.
+    const TURNSTILE_SITE_KEY = "";
+    // default label above each person's name, from the relation (the customer can change it)
+    const LABELS = { mother: "Mother", father: "Father", grandmother: "Grandmother", grandfather: "Grandfather", "grandmother-m": "Grandmother",
+      "grandfather-m": "Grandfather", sibling: "Sibling", partner: "Partner", child: "Child", friend: "Friend", other: "" };
     const PLANS = [
       { id: "basic", name: "Basic", price: 199, people: 8, eta: "Delivered within 3 days" },
       { id: "family", name: "Family", price: 349, people: 15, eta: "Delivered within 3 days", tag: "Most families" },
@@ -260,15 +266,21 @@
       const fate = $(".p-fate", node), toBox = $(".to-box", node);
       const syncFate = () => {
         toBox.classList.toggle("hidden", !["leaves", "dies"].includes(fate.value));
-        $(".to-label", node).textContent = fate.value === "dies" ? "Passed away at age" : "Moved away at age";
+        $(".to-label", node).textContent = fate.value === "dies" ? "Passed away at age" : "Drifted apart / moved away at age";
         $(".p-from", node).placeholder = fate.value === "passes" ? "required" : "";
       };
       fate.addEventListener("change", syncFate);
+      // the label follows the relation until the customer types their own
+      const rel = $(".p-rel", node), role = $(".p-role", node);
+      rel.addEventListener("change", () => {
+        if (!role.value.trim() || role.value === role.dataset.auto) role.value = role.dataset.auto = LABELS[rel.value] || "";
+      });
       $(".rm", node).addEventListener("click", () => { node.remove(); renumber(); saveDraft(); });
       if (pre.rel) $(".p-rel", node).value = pre.rel;
       if (pre.fate) fate.value = pre.fate;
       if (pre.name != null) $(".p-name", node).value = pre.name;
-      if (pre.role != null) $(".p-role", node).value = pre.role;
+      role.value = pre.role != null ? pre.role : LABELS[rel.value] || "";
+      if (role.value === LABELS[rel.value]) role.dataset.auto = role.value;
       if (pre.from != null) $(".p-from", node).value = pre.from;
       if (pre.to != null) $(".p-to", node).value = pre.to;
       syncFate();
@@ -278,8 +290,14 @@
     function renumber() {
       const cards = $$("#people .person");
       cards.forEach((c, i) => ($(".idx", c).textContent = "#" + (i + 1)));
-      $("#peopleCount").textContent = `${cards.length} of ${plan().people} people on the ${plan().name} plan`;
+      countPeople();
       $("#summary").classList.add("hidden"); $("#payBtn").classList.add("hidden");
+    }
+    // a card counts once it has a name or an age; untouched cards are skipped
+    const filled = (c) => [".p-name", ".p-from", ".p-to"].some((k) => $(k, c).value.trim() !== "");
+    function countPeople() {
+      const n = $$("#people .person").filter(filled).length;
+      $("#peopleCount").textContent = `${n} of ${plan().people} people on the ${plan().name} plan`;
     }
     $("#addPerson").addEventListener("click", () => { addPerson(); saveDraft(); });
     $$("input[name=plan]").forEach((el) => el.addEventListener("change", renumber));
@@ -310,7 +328,7 @@
     }
     const draft = loadDraft();
     if (draft) { restore(draft); $("#restoreBar").classList.remove("hidden"); }
-    if (!$$("#people .person").length) { addPerson({ rel: "mother" }); addPerson({ rel: "father" }); }
+    if (!$$("#people .person").length) ["mother", "father", "grandmother", "grandfather", "sibling"].forEach((rel) => addPerson({ rel }));
     syncMain(); renumber();
     $("#startOver").addEventListener("click", () => {
       try { localStorage.removeItem(DRAFT_KEY); } catch {}
@@ -327,7 +345,9 @@
       const main = $("#mainName").value.trim();
       if (!main) errs.push("Add the main person's name.");
       if (!(finalAge >= 1 && finalAge <= 110)) errs.push("Add their age (1–110).");
-      const people = $$("#people .person").map((c, i) => {
+      const cards = $$("#people .person");
+      const people = cards.filter(filled).map((c) => {
+        const i = cards.indexOf(c);
         const rel = $(".p-rel", c).value;
         const p = { name: $(".p-name", c).value.trim(), relation: rel.replace("-m", ""), fate: $(".p-fate", c).value,
           from: num($(".p-from", c).value), role: $(".p-role", c).value.trim() };
@@ -360,12 +380,12 @@
       return { errs, order };
     }
 
-    const FATE = { stays: "Stayed", passes: "Passed through", leaves: "Moved away", dies: "Passed away" };
+    const FATE = { stays: "Still in their life", passes: "Crossed their path briefly", leaves: "Drifted apart / moved away", dies: "Passed away" };
     const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
     function onEdit(e) {
       if (e.target.closest("#summary")) return;
       $("#summary").classList.add("hidden"); $("#payBtn").classList.add("hidden");
-      saveDraft();
+      countPeople(); saveDraft();
     }
     $("#orderForm").addEventListener("input", onEdit);
     $("#orderForm").addEventListener("change", onEdit);
@@ -385,16 +405,31 @@
           <td>${FATE[q.fate]}${q.to != null ? " at " + q.to : ""}</td></tr>`).join("")}
         </table>
         <p class="hint" style="margin-top:12px">Your video will be emailed to <b style="color:var(--log-ink)">${esc(order.buyer.email)}</b>. Check it's spelled right.</p>
+        <p class="hint" style="margin-top:8px">After you pay, we hold your order for ${p.id === "rush" ? "2 hours" : "24 hours"} so you can reply to the order email with any changes. If we don't hear from you, we go ahead with these details.</p>
         <div class="total"><span>${p.name} · ${p.eta.toLowerCase()}</span><b>₹${p.price}</b></div>`;
       $("#summary").classList.remove("hidden");
       $("#payBtn").classList.remove("hidden");
       $("#summary").scrollIntoView({ behavior: "smooth", block: "start" });
     });
 
+    // bot check: loaded only when a site key is set, shown with the review
+    let turnstileToken = "";
+    if (TURNSTILE_SITE_KEY) {
+      window.onTurnstileLoad = () => turnstile.render("#turnstile", {
+        sitekey: TURNSTILE_SITE_KEY, theme: "light", action: "order",
+        callback: (t) => (turnstileToken = t), "expired-callback": () => (turnstileToken = ""),
+      });
+      const sc = document.createElement("script");
+      sc.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onTurnstileLoad&render=explicit";
+      sc.async = true; document.head.appendChild(sc);
+    }
+
     $("#orderForm").addEventListener("submit", async (e) => {
       e.preventDefault();
       const { errs, order } = collect();
       if (errs.length) { $("#err").textContent = errs[0]; return; }
+      if (TURNSTILE_SITE_KEY && !turnstileToken) { $("#err").textContent = "Please complete the quick check above the button."; return; }
+      order.turnstileToken = turnstileToken;
       const btn = $("#payBtn");
       btn.disabled = true; btn.textContent = "Creating secure payment…"; $("#err").textContent = "";
       try {
@@ -405,6 +440,7 @@
       } catch (err) {
         $("#err").textContent = err.message;
         btn.disabled = false; btn.textContent = "Pay & place order";
+        if (TURNSTILE_SITE_KEY && window.turnstile) { turnstile.reset("#turnstile"); turnstileToken = ""; } // tokens work once
       }
     });
   </script>

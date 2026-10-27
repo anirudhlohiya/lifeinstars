@@ -197,3 +197,5 @@ footer a { color: var(--paper-dim); margin: 0 8px; }
 .prose h2 { font-size: 22px; margin: 28px 0 8px; }
 .prose p, .prose li { color: #d6ccb4; }
 .prose .updated { color: var(--paper-dim); font-size: 13px; font-family: var(--mono); letter-spacing: 0.05em; }
+.turnstile:empty { display: none; }
+.turnstile { margin: 14px 0 4px; min-height: 65px; }
