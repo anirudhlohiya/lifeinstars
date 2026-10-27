@@ -84,7 +84,9 @@ nav a:hover { color: var(--paper); }
 .scope .ring2 { position: absolute; inset: 7%; border-radius: 50%; border: 1px solid var(--line); }
 @keyframes turn { to { transform: rotate(360deg); } }
 .scope .glass { position: relative; width: 46%; aspect-ratio: 9 / 16; border-radius: 18px; overflow: hidden; background: #050913; border: 1px solid rgba(226, 194, 127, 0.45); box-shadow: 0 0 0 6px rgba(11, 18, 32, 0.9), 0 30px 80px rgba(0, 0, 0, 0.55), 0 0 70px rgba(201, 163, 91, 0.12); }
-.scope video { display: block; width: 100%; height: 100%; object-fit: cover; }
+/* contain, not cover: in full screen the 9:16 video must show whole on a wide screen, not zoom and crop */
+.scope video { display: block; width: 100%; height: 100%; object-fit: contain; background: #050913; }
+.scope video:fullscreen, .scope video:-webkit-full-screen { object-fit: contain; background: #000; }
 .scope .coord { position: absolute; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; color: var(--brass); white-space: nowrap; }
 .scope .c1 { top: 4%; left: 50%; transform: translateX(-50%); }
 .scope .c2 { bottom: 4%; left: 50%; transform: translateX(-50%); }
