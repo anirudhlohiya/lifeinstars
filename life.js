@@ -94,7 +94,7 @@
     var mid = innerHeight * 0.45, cur = chapters[0];
     for (var i = 0; i < chapters.length; i++) { if (chapters[i].getBoundingClientRect().top <= mid) cur = chapters[i]; }
     var label = cur.getAttribute("data-chapter");
-    var txt = cur === section && lifeAge != null ? "<b>II</b> · Age " + lifeAge : label.replace(/^([IVX]+) ·/, "<b>$1</b> ·");
+    var txt = cur === section && lifeAge != null ? label + " · <b>Age " + lifeAge + "</b>" : label;
     if (txt !== folioText) { folioText = txt; folioEl.innerHTML = txt; }
   }
 
