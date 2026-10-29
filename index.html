@@ -113,9 +113,9 @@
             <p class="made__lede">Four simple steps, from your family's names to a finished video in your inbox.</p>
             <div class="tiers" role="list" aria-label="Prices">
               <p class="tiers__cap">Prices</p>
-              <div class="tiers__row" role="listitem"><b class="tiers__name">Basic</b><span class="tiers__info">Up to 8 people · within 3 days</span><span class="tiers__price"><b>₹199</b><small>about $2.99</small></span></div>
-              <div class="tiers__row" role="listitem"><b class="tiers__name">Family</b><span class="tiers__info">Up to 15 people · within 3 days</span><span class="tiers__price"><b>₹349</b><small>about $4.99</small></span></div>
-              <div class="tiers__row" role="listitem"><b class="tiers__name">Rush</b><span class="tiers__info">Up to 15 people · within 12 hours</span><span class="tiers__price"><b>₹499</b><small>about $6.99</small></span></div>
+              <div class="tiers__row" role="listitem"><b class="tiers__name">Basic</b><span class="tiers__info">Up to 8 people · within 3 days</span><span class="tiers__price"><b>₹199</b><small>about $1.99</small></span></div>
+              <div class="tiers__row" role="listitem"><b class="tiers__name">Family</b><span class="tiers__info">Up to 15 people · within 3 days</span><span class="tiers__price"><b>₹349</b><small>about $3.49</small></span></div>
+              <div class="tiers__row" role="listitem"><b class="tiers__name">Rush</b><span class="tiers__info">Up to 15 people · within 12 hours</span><span class="tiers__price"><b>₹499</b><small>about $4.99</small></span></div>
             </div>
             <ul class="facts">
               <li>Pay safely with Razorpay: UPI, cards or net banking.</li>
@@ -306,9 +306,9 @@
     const LABELS = { mother: "Mother", father: "Father", grandmother: "Grandmother", grandfather: "Grandfather", "grandmother-m": "Grandmother",
       "grandfather-m": "Grandfather", sibling: "Sibling", partner: "Partner", child: "Child", friend: "Friend", other: "" };
     const PLANS = [
-      { id: "basic", usd: "2.99", name: "Basic", price: 199, people: 8, eta: "Delivered within 3 days" },
-      { id: "family", usd: "4.99", name: "Family", price: 349, people: 15, eta: "Delivered within 3 days", tag: "Most families" },
-      { id: "rush", usd: "6.99", name: "Rush", price: 499, people: 15, eta: "Delivered within 12 hours" },
+      { id: "basic", usd: "1.99", name: "Basic", price: 199, people: 8, eta: "Delivered within 3 days" },
+      { id: "family", usd: "3.49", name: "Family", price: 349, people: 15, eta: "Delivered within 3 days", tag: "Most families" },
+      { id: "rush", usd: "4.99", name: "Rush", price: 499, people: 15, eta: "Delivered within 12 hours" },
     ];
 
     const $ = (s, r = document) => r.querySelector(s);
@@ -479,7 +479,7 @@
           <td>${esc(q.relation)}${q.side ? " (mother's side)" : ""}</td><td>${q.from == null ? "Before birth" : "Age " + q.from}</td>
           <td>${FATE[q.fate]}${q.to != null ? " at " + q.to : ""}</td></tr>`).join("")}
         </table>
-        <p class="hint" style="margin-top:12px">Your video will be emailed to <b style="color:var(--log-ink)">${esc(order.buyer.email)}</b>. Check it's spelled right.</p>
+        <p class="hint" style="margin-top:12px">Your video will be emailed to <b style="color:var(--log-ink)">${esc(order.buyer.email)}</b>. Check it's spelled right. Our emails sometimes land in Spam or Promotions, so look there if you don't see them.</p>
         <p class="hint" style="margin-top:8px">After you pay, we hold your order for ${p.id === "rush" ? "2 hours" : "24 hours"} so you can reply to the order email with any changes. If we don't hear from you, we go ahead with these details.</p>
         <div class="total"><span>${p.name} · ${p.eta.toLowerCase()}</span><b>₹${p.price}</b></div>`;
       $("#summary").classList.remove("hidden");

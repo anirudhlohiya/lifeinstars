@@ -10,9 +10,9 @@ that join into your family's constellation.
 
 | Plan | People | Delivered | Price |
 |---|---|---|---|
-| Basic | up to 8 | within 3 days | ₹199 (about $2.99) |
-| Family | up to 15 | within 3 days | ₹349 (about $4.99) |
-| Rush | up to 15 | within 12 hours | ₹499 (about $6.99) |
+| Basic | up to 8 | within 3 days | ₹199 (about $1.99) |
+| Family | up to 15 | within 3 days | ₹349 (about $3.49) |
+| Rush | up to 15 | within 12 hours | ₹499 (about $4.99) |
 
 Every video is checked by a person before it's sent, with one free correction within 7 days and a full refund if it's late.
 

@@ -15,13 +15,14 @@
     <main class="prose">
       <h1 id="h">Thank you!</h1>
       <p id="msg">Your payment is being confirmed.</p>
-      <p>We'll email your video to the address you gave. If you don't see it, check your spam folder or write to <a href="mailto:gyaansharma22@gmail.com">gyaansharma22@gmail.com</a> with your order ID.</p>
+      <p><b>Check your email in a few minutes.</b> We're sending you a confirmation with your story. If it isn't in your inbox, please look in your <b>Spam</b> or <b>Promotions</b> folder and mark it as "Not spam", so your video reaches your inbox too.</p>
+      <p>Still nothing after 15 minutes? Write to <a href="mailto:gyaansharma22@gmail.com">gyaansharma22@gmail.com</a> with your order ID.</p>
       <p><a class="btn ghost" href="./">Back to Life in Stars</a></p>
       <script>
         const q = new URLSearchParams(location.search);
         const st = q.get("razorpay_payment_link_status"), id = q.get("razorpay_payment_link_reference_id");
         if (st === "paid") { try { localStorage.removeItem("lifeinstars-draft-v1"); } catch {} }
-        if (st === "paid") document.getElementById("msg").textContent = "Payment received" + (id ? " for order " + id : "") + ". Your video is being made now.";
+        if (st === "paid") document.getElementById("msg").textContent = "Payment received" + (id ? " for order " + id : "") + ". If anything in your story needs changing, just reply to the confirmation email.";
         else if (st) { document.getElementById("h").textContent = "Payment not completed"; document.getElementById("msg").textContent = "Your payment didn't go through, so nothing was charged. You can try again from the order page."; }
       </script>
     </main>
